@@ -206,6 +206,7 @@ import at.hannibal2.skyhanni.features.inventory.HighlightBonzoMasks
 import at.hannibal2.skyhanni.features.inventory.ItemDisplayOverlayFeatures
 import at.hannibal2.skyhanni.features.inventory.ItemStars
 import at.hannibal2.skyhanni.features.inventory.QuickCraftFeatures
+import at.hannibal2.skyhanni.features.inventory.QuiverNotification
 import at.hannibal2.skyhanni.features.inventory.RngMeterInventory
 import at.hannibal2.skyhanni.features.inventory.SackDisplay
 import at.hannibal2.skyhanni.features.inventory.ShiftClickEquipment
@@ -696,6 +697,7 @@ class SkyHanniMod {
         loadModule(HighlightInquisitors())
         loadModule(VerminTracker)
         loadModule(DungeonShadowAssassinNotification())
+        loadModule(QuiverNotification)
 
         init()
 
