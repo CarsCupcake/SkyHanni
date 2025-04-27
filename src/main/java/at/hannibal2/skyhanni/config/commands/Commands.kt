@@ -95,6 +95,12 @@ object Commands {
             description = "Using path finder to go to locations"
             callback { NavigationHelper.onCommand(it) }
         }
+
+        event.register("shresetguessedburrows") {
+            description = "Resets the guessed burrows."
+
+            callback { GriffinBurrowHelper.resetGuessedBurrows() }
+        }
     }
 
     @Suppress("LongMethod")

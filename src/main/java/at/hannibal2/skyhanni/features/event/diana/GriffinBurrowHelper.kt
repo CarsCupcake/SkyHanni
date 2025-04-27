@@ -136,6 +136,10 @@ object GriffinBurrowHelper {
         testList = list
     }
 
+    fun resetGuessedBurrows() {
+        resetAllData()
+    }
+
     fun update() {
         if (config.burrowsNearbyDetection) {
             checkRemoveNearbyGuess()
