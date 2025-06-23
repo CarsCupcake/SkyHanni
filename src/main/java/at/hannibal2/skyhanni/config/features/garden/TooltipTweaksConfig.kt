@@ -1,15 +1,15 @@
-package at.hannibal2.skyhanni.config.features.garden;
+package at.hannibal2.skyhanni.config.features.garden
 
-import at.hannibal2.skyhanni.config.FeatureToggle;
-import at.hannibal2.skyhanni.config.HasLegacyId;
-import com.google.gson.annotations.Expose;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorBoolean;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorDropdown;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorKeybind;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigOption;
-import org.lwjgl.input.Keyboard;
+import at.hannibal2.skyhanni.config.FeatureToggle
+import at.hannibal2.skyhanni.config.HasLegacyId
+import com.google.gson.annotations.Expose
+import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorBoolean
+import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorDropdown
+import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorKeybind
+import io.github.notenoughupdates.moulconfig.annotations.ConfigOption
+import org.lwjgl.input.Keyboard
 
-public class TooltipTweaksConfig {
+class TooltipTweaksConfig {
     @Expose
     @ConfigOption(
         name = "Compact Descriptions",
@@ -17,7 +17,7 @@ public class TooltipTweaksConfig {
     )
     @ConfigEditorBoolean
     @FeatureToggle
-    public boolean compactToolTooltips = false;
+    var compactToolTooltips: Boolean = false
 
     @Expose
     @ConfigOption(
@@ -25,7 +25,7 @@ public class TooltipTweaksConfig {
         desc = "When the keybind is pressed, show a breakdown of all fortune sources on a tool."
     )
     @ConfigEditorKeybind(defaultKey = Keyboard.KEY_LSHIFT)
-    public int fortuneTooltipKeybind = Keyboard.KEY_LSHIFT;
+    var fortuneTooltipKeybind: Int = Keyboard.KEY_LSHIFT
 
     @Expose
     @ConfigOption(
@@ -35,34 +35,19 @@ public class TooltipTweaksConfig {
             "§fReplace: §7Edits the total Fortune to include crop-specific Fortune."
     )
     @ConfigEditorDropdown
-    public CropTooltipFortuneEntry cropTooltipFortune = CropTooltipFortuneEntry.SHOW;
+    var cropTooltipFortune: CropTooltipFortuneEntry = CropTooltipFortuneEntry.SHOW
 
-    public enum CropTooltipFortuneEntry implements HasLegacyId {
+    enum class CropTooltipFortuneEntry(
+        private val displayName: String,
+        private val legacyId: Int = -1
+    ) : HasLegacyId {
         DEFAULT("Default", 0),
         SHOW("Show", 1),
-        REPLACE("Replace", 2);
-        private final String displayName;
-        private final int legacyId;
+        REPLACE("Replace", 2),
+        ;
 
-        CropTooltipFortuneEntry(String displayName, int legacyId) {
-            this.displayName = displayName;
-            this.legacyId = legacyId;
-        }
-
-        // Constructor if new enum elements are added post-migration
-        CropTooltipFortuneEntry(String displayName) {
-            this(displayName, -1);
-        }
-
-        @Override
-        public int getLegacyId() {
-            return legacyId;
-        }
-
-        @Override
-        public String toString() {
-            return displayName;
-        }
+        override fun getLegacyId() = legacyId
+        override fun toString() = displayName
     }
 
     @Expose
@@ -72,5 +57,5 @@ public class TooltipTweaksConfig {
     )
     @ConfigEditorBoolean
     @FeatureToggle
-    public boolean cropMilestoneTotalProgress = true;
+    var cropMilestoneTotalProgress: Boolean = true
 }

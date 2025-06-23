@@ -1,176 +1,180 @@
-package at.hannibal2.skyhanni.config.features.gui.customscoreboard;
+package at.hannibal2.skyhanni.config.features.gui.customscoreboard
 
-import at.hannibal2.skyhanni.config.FeatureToggle;
-import at.hannibal2.skyhanni.data.DateFormat;
-import at.hannibal2.skyhanni.features.gui.customscoreboard.CustomScoreboardUtils;
-import at.hannibal2.skyhanni.utils.RenderUtils;
-import com.google.gson.annotations.Expose;
-import io.github.notenoughupdates.moulconfig.annotations.Accordion;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorBoolean;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorDropdown;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorSlider;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigOption;
-import io.github.notenoughupdates.moulconfig.observer.Property;
+import at.hannibal2.skyhanni.config.FeatureToggle
+import at.hannibal2.skyhanni.data.DateFormat
+import at.hannibal2.skyhanni.features.gui.customscoreboard.CustomScoreboardUtils.NumberDisplayFormat
+import at.hannibal2.skyhanni.utils.RenderUtils
+import com.google.gson.annotations.Expose
+import io.github.notenoughupdates.moulconfig.annotations.Accordion
+import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorBoolean
+import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorDropdown
+import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorSlider
+import io.github.notenoughupdates.moulconfig.annotations.ConfigOption
+import io.github.notenoughupdates.moulconfig.observer.Property
 
-public class DisplayConfig {
-
+class DisplayConfig {
     @Expose
     @ConfigOption(name = "Alignment Options", desc = "")
     @Accordion
-    public AlignmentConfig alignment = new AlignmentConfig();
+    var alignment: AlignmentConfig = AlignmentConfig()
 
     @Expose
     @ConfigOption(name = "Arrow Options", desc = "")
     @Accordion
-    public ArrowConfig arrow = new ArrowConfig();
+    var arrow: ArrowConfig = ArrowConfig()
 
     @Expose
     @ConfigOption(name = "Chunked Stats Options", desc = "")
     @Accordion
-    public ChunkedStatsConfig chunkedStats = new ChunkedStatsConfig();
+    var chunkedStats: ChunkedStatsConfig = ChunkedStatsConfig()
 
     @Expose
     @ConfigOption(name = "Events Options", desc = "")
     @Accordion
-    public EventsConfig events = new EventsConfig();
+    var events: EventsConfig = EventsConfig()
 
     @Expose
     @ConfigOption(name = "Maxwell Options", desc = "")
     @Accordion
-    public MaxwellConfig maxwell = new MaxwellConfig();
+    var maxwell: MaxwellConfig = MaxwellConfig()
 
     @Expose
     @ConfigOption(name = "Mayor Options", desc = "")
     @Accordion
-    public MayorConfig mayor = new MayorConfig();
+    var mayor: MayorConfig = MayorConfig()
 
     @Expose
     @ConfigOption(name = "Party Options", desc = "")
     @Accordion
-    public PartyConfig party = new PartyConfig();
+    var party: PartyConfig = PartyConfig()
 
     @Expose
     @ConfigOption(name = "Title and Footer Options", desc = "")
     @Accordion
-    public TitleAndFooterConfig titleAndFooter = new TitleAndFooterConfig();
+    var titleAndFooter: TitleAndFooterConfig = TitleAndFooterConfig()
 
     @Expose
-    @ConfigOption(name = "Hide Vanilla Scoreboard", desc = "Hide the vanilla scoreboard.\n" +
-        "§cMods that add their own scoreboard will not be affected by this setting!")
+    @ConfigOption(
+        name = "Hide Vanilla Scoreboard",
+        desc = "Hide the vanilla scoreboard.\n" +
+            "§cMods that add their own scoreboard will not be affected by this setting!",
+    )
     @ConfigEditorBoolean
     @FeatureToggle
-    public Property<Boolean> hideVanillaScoreboard = Property.of(true);
+    var hideVanillaScoreboard: Property<Boolean> = Property.of(true)
 
     @Expose
     @ConfigOption(name = "Show earned/lost", desc = "Show the amount you earned/lost on any Number display.")
     @ConfigEditorBoolean
-    public boolean showNumberDifference = false;
+    var showNumberDifference: Boolean = false
 
     @Expose
     @ConfigOption(name = "Use Custom Lines", desc = "Use custom lines instead of the default ones.")
     @ConfigEditorBoolean
-    public boolean useCustomLines = true;
+    var useCustomLines: Boolean = true
 
     @Expose
     @ConfigOption(name = "Show unclaimed bits", desc = "Show the amount of available Bits that can still be claimed.")
     @ConfigEditorBoolean
-    public boolean showUnclaimedBits = false;
+    var showUnclaimedBits: Boolean = false
 
     @Expose
-    @ConfigOption(name = "Show Max Island Players", desc = "Show the maximum amount of players that can join your current island.")
+    @ConfigOption(
+        name = "Show Max Island Players",
+        desc = "Show the maximum amount of players that can join your current island.",
+    )
     @ConfigEditorBoolean
-    public boolean showMaxIslandPlayers = true;
+    var showMaxIslandPlayers: Boolean = true
 
     @Expose
     @ConfigOption(name = "Powder Display", desc = "Select how the powder display should be formatted.")
     @ConfigEditorDropdown
-    public PowderDisplay powderDisplay = PowderDisplay.AVAILABLE;
+    var powderDisplay: PowderDisplay = PowderDisplay.AVAILABLE
 
-    public enum PowderDisplay {
+    enum class PowderDisplay(private val displayName: String) {
         AVAILABLE("Available"),
         TOTAL("Total"),
         BOTH("Available / All"),
         ;
 
-        private final String displayName;
-
-        PowderDisplay(String displayName) {
-            this.displayName = displayName;
-        }
-
-        @Override
-        public String toString() {
-            return displayName;
-        }
+        override fun toString() = displayName
     }
 
     @Expose
     @ConfigOption(name = "Number Format", desc = "Select how numbers should be formatted.")
     @ConfigEditorDropdown
-    public NumberFormat numberFormat = NumberFormat.LONG;
+    var numberFormat: NumberFormat = NumberFormat.LONG
 
-    public enum NumberFormat {
+    enum class NumberFormat(private val displayName: String) {
         LONG("1,234,567"),
         SHORT("1.2M");
 
-        private final String displayName;
-
-        NumberFormat(String displayName) {
-            this.displayName = displayName;
-        }
-
-        @Override
-        public String toString() {
-            return displayName;
+        override fun toString(): String {
+            return displayName
         }
     }
 
     @Expose
-    @ConfigOption(name = "Number Display Format", desc = "Select how numbers with their prefix and color should be formatted.")
+    @ConfigOption(
+        name = "Number Display Format",
+        desc = "Select how numbers with their prefix and color should be formatted.",
+    )
     @ConfigEditorDropdown
-    public CustomScoreboardUtils.NumberDisplayFormat numberDisplayFormat = CustomScoreboardUtils.NumberDisplayFormat.TEXT_COLOR_NUMBER;
+    var numberDisplayFormat: NumberDisplayFormat = NumberDisplayFormat.TEXT_COLOR_NUMBER
 
     @Expose
-    @ConfigOption(name = "SkyBlock Time 24h Format", desc = "Display the current SkyBlock time in 24hr format rather than 12h Format.")
+    @ConfigOption(
+        name = "SkyBlock Time 24h Format",
+        desc = "Display the current SkyBlock time in 24hr format rather than 12h Format.",
+    )
     @ConfigEditorBoolean
-    public boolean skyblockTime24hFormat = false;
+    var skyblockTime24hFormat: Boolean = false
 
     @Expose
-    @ConfigOption(name = "SkyBlock Time Exact Minutes", desc = "Display the exact minutes in the SkyBlock time, rather than only 10 minute increments.")
+    @ConfigOption(
+        name = "SkyBlock Time Exact Minutes",
+        desc = "Display the exact minutes in the SkyBlock time, rather than only 10 minute increments.",
+    )
     @ConfigEditorBoolean
-    public boolean skyblockTimeExactMinutes = false;
+    var skyblockTimeExactMinutes: Boolean = false
 
     @Expose
-    @ConfigOption(name = "Date in Lobby Code", desc = "Show the current date infront of the server name, like Hypixel does.")
+    @ConfigOption(
+        name = "Date in Lobby Code",
+        desc = "Show the current date infront of the server name, like Hypixel does.",
+    )
     @ConfigEditorBoolean
-    public boolean dateInLobbyCode = true;
+    var dateInLobbyCode: Boolean = true
 
     @Expose
     @ConfigOption(name = "Lobby Code Date Format", desc = "Select your preferred date format.")
     @ConfigEditorDropdown
-    public DateFormat dateFormat = DateFormat.US_SLASH_MMDDYYYY;
+    var dateFormat: DateFormat = DateFormat.US_SLASH_MMDDYYYY
 
     @Expose
     @ConfigOption(name = "Line Spacing", desc = "The amount of space between each line.")
-    @ConfigEditorSlider(minValue = 0, maxValue = 20, minStep = 1)
-    public int lineSpacing = 10;
+    @ConfigEditorSlider(minValue = 0f, maxValue = 20f, minStep = 1f)
+    var lineSpacing: Int = 10
 
     @Expose
-    @ConfigOption(name = "Text Alignment", desc = "Will align the text to the left, center or right, while not overriding certain lines, like title or footer.")
+    @ConfigOption(
+        name = "Text Alignment",
+        desc = "Will align the text to the left, center or right, while not overriding certain lines, like title or footer.",
+    )
     @ConfigEditorDropdown
-    public RenderUtils.HorizontalAlignment textAlignment = RenderUtils.HorizontalAlignment.LEFT;
+    var textAlignment: RenderUtils.HorizontalAlignment = RenderUtils.HorizontalAlignment.LEFT
 
     @Expose
     @ConfigOption(name = "Show Profile Name", desc = "Show profile name instead of the type in the profile element.")
     @ConfigEditorBoolean
-    public boolean showProfileName = false;
+    var showProfileName: Boolean = false
 
     @Expose
     @ConfigOption(
         name = "Cache Scoreboard on Island Switch",
         desc = "Will stop the Scoreboard from updating while switching islands.\n" +
-            "Removes the shaking when loading data."
+            "Removes the shaking when loading data.",
     )
     @ConfigEditorBoolean
-    public boolean cacheScoreboardOnIslandSwitch = false;
+    var cacheScoreboardOnIslandSwitch: Boolean = false
 }

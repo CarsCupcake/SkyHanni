@@ -1,168 +1,172 @@
-package at.hannibal2.skyhanni.config.features.garden;
+package at.hannibal2.skyhanni.config.features.garden
 
-import at.hannibal2.skyhanni.config.FeatureToggle;
-import at.hannibal2.skyhanni.config.core.config.Position;
-import at.hannibal2.skyhanni.config.features.garden.composter.ComposterConfig;
-import at.hannibal2.skyhanni.config.features.garden.cropmilestones.CropMilestonesConfig;
-import at.hannibal2.skyhanni.config.features.garden.laneswitch.FarmingLaneConfig;
-import at.hannibal2.skyhanni.config.features.garden.optimalspeed.OptimalSpeedConfig;
-import at.hannibal2.skyhanni.config.features.garden.pests.PestsConfig;
-import at.hannibal2.skyhanni.config.features.garden.visitor.VisitorConfig;
-import com.google.gson.annotations.Expose;
-import io.github.notenoughupdates.moulconfig.annotations.Accordion;
-import io.github.notenoughupdates.moulconfig.annotations.Category;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorBoolean;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorSlider;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigLink;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigOption;
-import io.github.notenoughupdates.moulconfig.annotations.SearchTag;
+import at.hannibal2.skyhanni.config.FeatureToggle
+import at.hannibal2.skyhanni.config.core.config.Position
+import at.hannibal2.skyhanni.config.features.garden.composter.ComposterConfig
+import at.hannibal2.skyhanni.config.features.garden.cropmilestones.CropMilestonesConfig
+import at.hannibal2.skyhanni.config.features.garden.laneswitch.FarmingLaneConfig
+import at.hannibal2.skyhanni.config.features.garden.optimalspeed.OptimalSpeedConfig
+import at.hannibal2.skyhanni.config.features.garden.pests.PestsConfig
+import at.hannibal2.skyhanni.config.features.garden.visitor.VisitorConfig
+import com.google.gson.annotations.Expose
+import io.github.notenoughupdates.moulconfig.annotations.Accordion
+import io.github.notenoughupdates.moulconfig.annotations.Category
+import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorBoolean
+import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorSlider
+import io.github.notenoughupdates.moulconfig.annotations.ConfigLink
+import io.github.notenoughupdates.moulconfig.annotations.ConfigOption
+import io.github.notenoughupdates.moulconfig.annotations.SearchTag
 
-public class GardenConfig {
+class GardenConfig {
     @Expose
     @ConfigOption(name = "SkyMart", desc = "")
     @Accordion
-    public SkyMartConfig skyMart = new SkyMartConfig();
+    var skyMart: SkyMartConfig = SkyMartConfig()
 
     @Expose
     @Category(name = "Visitor", desc = "Visitor Settings")
-    public VisitorConfig visitors = new VisitorConfig();
+    var visitors: VisitorConfig = VisitorConfig()
 
     @Expose
     @ConfigOption(name = "Numbers", desc = "")
     @Accordion
-    public NumbersConfig number = new NumbersConfig();
+    var number: NumbersConfig = NumbersConfig()
 
     @Expose
     @Category(name = "Crop Milestones", desc = "Crop Milestones Settings")
-    public CropMilestonesConfig cropMilestones = new CropMilestonesConfig();
+    var cropMilestones: CropMilestonesConfig = CropMilestonesConfig()
 
-    // TODO moulconfig runnable support
+    // TODO Write ConditionalUtils.onToggle()-s for these values in their feature classes
     @Expose
     @ConfigOption(name = "Custom Keybinds", desc = "")
     @Accordion
-    public KeyBindConfig keyBind = new KeyBindConfig();
+    var keyBind: KeyBindConfig = KeyBindConfig()
 
     @Expose
     @Category(name = "Optimal Speed", desc = "Optimal Speed Settings")
-    public OptimalSpeedConfig optimalSpeeds = new OptimalSpeedConfig();
+    var optimalSpeeds: OptimalSpeedConfig = OptimalSpeedConfig()
 
     @Expose
     @ConfigOption(name = "Farming Lane", desc = "")
     @Accordion
-    public FarmingLaneConfig farmingLane = new FarmingLaneConfig();
+    var farmingLane: FarmingLaneConfig = FarmingLaneConfig()
 
     @Expose
     @ConfigOption(name = "Garden Level", desc = "")
     @Accordion
-    public GardenLevelConfig gardenLevels = new GardenLevelConfig();
+    var gardenLevels: GardenLevelConfig = GardenLevelConfig()
 
     @Expose
     @ConfigOption(name = "Farming Weight", desc = "")
     @Accordion
-    public EliteFarmingWeightConfig eliteFarmingWeights = new EliteFarmingWeightConfig();
+    var eliteFarmingWeights: EliteFarmingWeightConfig = EliteFarmingWeightConfig()
 
     @Expose
     @ConfigOption(name = "Dicer RNG Drop Tracker", desc = "")
     @Accordion
-    // TODO rename to dicerRngDropTracker
-    public DicerRngDropTrackerConfig dicerCounters = new DicerRngDropTrackerConfig();
+    var dicerRngDropTracker: DicerRngDropTrackerConfig = DicerRngDropTrackerConfig()
 
     @Expose
     @ConfigOption(name = "Money per Hour", desc = "")
     @Accordion
-    public MoneyPerHourConfig moneyPerHours = new MoneyPerHourConfig();
+    var moneyPerHours: MoneyPerHourConfig = MoneyPerHourConfig()
 
     @Expose
     @ConfigOption(name = "Next Jacob's Contest", desc = "")
     @Accordion
-    public NextJacobContestConfig nextJacobContests = new NextJacobContestConfig();
+    var nextJacobContests: NextJacobContestConfig = NextJacobContestConfig()
 
     @Expose
     @ConfigOption(name = "Armor Drop Tracker", desc = "")
     @Accordion
-    // TODO rename to armorDropTracker
-    public ArmorDropTrackerConfig farmingArmorDrop = new ArmorDropTrackerConfig();
+    var armorDropTracker: ArmorDropTrackerConfig = ArmorDropTrackerConfig()
 
     @Expose
     @ConfigOption(name = "Anita Shop", desc = "")
     @Accordion
-    public AnitaShopConfig anitaShop = new AnitaShopConfig();
+    var anitaShop: AnitaShopConfig = AnitaShopConfig()
 
     @Expose
     @Category(name = "Composter", desc = "Composter Settings")
-    public ComposterConfig composters = new ComposterConfig();
+    var composters: ComposterConfig = ComposterConfig()
 
     @Expose
     @Category(name = "Pests", desc = "Pests Settings")
-    public PestsConfig pests = new PestsConfig();
+    var pests: PestsConfig = PestsConfig()
 
     @Expose
     @ConfigOption(name = "Farming Fortune Display", desc = "")
     @Accordion
-    public FarmingFortuneConfig farmingFortunes = new FarmingFortuneConfig();
+    var farmingFortunes: FarmingFortuneConfig = FarmingFortuneConfig()
 
     @Expose
     @ConfigOption(name = "Tooltip Tweaks", desc = "")
     @Accordion
-    public TooltipTweaksConfig tooltipTweak = new TooltipTweaksConfig();
+    var tooltipTweak: TooltipTweaksConfig = TooltipTweaksConfig()
 
     @Expose
     @ConfigOption(name = "Yaw and Pitch", desc = "")
     @Accordion
-    public YawPitchDisplayConfig yawPitchDisplay = new YawPitchDisplayConfig();
+    var yawPitchDisplay: YawPitchDisplayConfig = YawPitchDisplayConfig()
 
     @Expose
     @ConfigOption(name = "Sensitivity Reducer", desc = "")
     @Accordion
-    public SensitivityReducerConfig sensitivityReducer = new SensitivityReducerConfig();
+    var sensitivityReducer: SensitivityReducerConfig = SensitivityReducerConfig()
 
     @Expose
     @ConfigOption(name = "Crop Start Location", desc = "")
     @Accordion
-    public CropStartLocationConfig cropStartLocation = new CropStartLocationConfig();
+    var cropStartLocation: CropStartLocationConfig = CropStartLocationConfig()
 
     @Expose
     @ConfigOption(name = "Plot Menu Highlighting", desc = "")
     @Accordion
-    public PlotMenuHighlightingConfig plotMenuHighlighting = new PlotMenuHighlightingConfig();
+    var plotMenuHighlighting: PlotMenuHighlightingConfig = PlotMenuHighlightingConfig()
 
     @Expose
     @ConfigOption(name = "Garden Plot Icon", desc = "")
     @Accordion
-    public PlotIconConfig plotIcon = new PlotIconConfig();
+    var plotIcon: PlotIconConfig = PlotIconConfig()
 
     @Expose
     @ConfigOption(name = "Garden Commands", desc = "")
     @Accordion
-    public GardenCommandsConfig gardenCommands = new GardenCommandsConfig();
+    var gardenCommands: GardenCommandsConfig = GardenCommandsConfig()
 
     @Expose
     @ConfigOption(name = "Atmospheric Filter Display", desc = "")
     @Accordion
-    public AtmosphericFilterDisplayConfig atmosphericFilterDisplay = new AtmosphericFilterDisplayConfig();
+    var atmosphericFilterDisplay: AtmosphericFilterDisplayConfig = AtmosphericFilterDisplayConfig()
 
     @Expose
     @ConfigOption(name = "Personal Bests", desc = "")
     @Accordion
-    public PersonalBestsConfig personalBests = new PersonalBestsConfig();
+    var personalBests: PersonalBestsConfig = PersonalBestsConfig()
 
     @Expose
-    @ConfigOption(name = "Plot Price", desc = "Show the price of the plot in coins when inside the Configure Plots inventory.")
+    @ConfigOption(
+        name = "Plot Price",
+        desc = "Show the price of the plot in coins when inside the Configure Plots inventory."
+    )
     @ConfigEditorBoolean
     @FeatureToggle
-    public boolean plotPrice = true;
+    var plotPrice: Boolean = true
 
     @Expose
     @ConfigOption(name = "Fungi Cutter Warning", desc = "Warn when breaking mushroom with the wrong Fungi Cutter mode.")
     @ConfigEditorBoolean
     @FeatureToggle
-    public boolean fungiCutterWarn = true;
+    var fungiCutterWarn: Boolean = true
 
     @Expose
-    @ConfigOption(name = "Burrowing Spores", desc = "Show a notification when a Burrowing Spores spawns while farming mushrooms.")
+    @ConfigOption(
+        name = "Burrowing Spores",
+        desc = "Show a notification when a Burrowing Spores spawns while farming mushrooms."
+    )
     @ConfigEditorBoolean
     @FeatureToggle
-    public boolean burrowingSporesNotification = true;
+    var burrowingSporesNotification: Boolean = true
 
     @Expose
     @ConfigOption(
@@ -171,11 +175,11 @@ public class GardenConfig {
     )
     @ConfigEditorBoolean
     @FeatureToggle
-    public boolean farmingFortuneForContest = true;
+    var farmingFortuneForContest: Boolean = true
 
     @Expose
-    @ConfigLink(owner = GardenConfig.class, field = "farmingFortuneForContest")
-    public Position farmingFortuneForContestPos = new Position(180, 156, false, true);
+    @ConfigLink(owner = GardenConfig::class, field = "farmingFortuneForContest")
+    var farmingFortuneForContestPos: Position = Position(180, 156)
 
     @Expose
     @ConfigOption(
@@ -184,7 +188,7 @@ public class GardenConfig {
     )
     @ConfigEditorBoolean
     @FeatureToggle
-    public boolean jacobContestTimes = true;
+    var jacobContestTimes: Boolean = true
 
     @Expose
     @ConfigOption(
@@ -192,21 +196,17 @@ public class GardenConfig {
         desc = "Use custom Blocks per Second value in some GUIs instead of the real one."
     )
     @ConfigEditorBoolean
-    public boolean jacobContestCustomBps = true;
+    var jacobContestCustomBps: Boolean = true
 
-    // TODO moulconfig runnable support
+    // TODO Write ConditionalUtils.onToggle()-s for these values in their feature classes
     @Expose
     @ConfigOption(name = "Custom BPS Value", desc = "Set a custom Blocks per Second value.")
-    @ConfigEditorSlider(
-        minValue = 15,
-        maxValue = 20,
-        minStep = 0.1f
-    )
-    public double jacobContestCustomBpsValue = 19.9;
+    @ConfigEditorSlider(minValue = 15f, maxValue = 20f, minStep = 0.1f)
+    var jacobContestCustomBpsValue: Double = 19.9
 
     @Expose
-    @ConfigLink(owner = GardenConfig.class, field = "jacobContestTimes")
-    public Position jacobContestTimesPosition = new Position(-359, 149, false, true);
+    @ConfigLink(owner = GardenConfig::class, field = "jacobContestTimes")
+    var jacobContestTimesPosition: Position = Position(-359, 149)
 
     @Expose
     @ConfigOption(
@@ -215,38 +215,46 @@ public class GardenConfig {
     )
     @ConfigEditorBoolean
     @FeatureToggle
-    public boolean jacobContestSummary = true;
+    var jacobContestSummary: Boolean = true
 
     // Does not have a config element!
     @Expose
-    public Position cropSpeedMeterPos = new Position(278, -236, false, true);
+    var cropSpeedMeterPos: Position = Position(278, -236)
 
     @Expose
-    @ConfigOption(name = "Enable Plot Borders", desc = "Enable the use of F3 + G hotkey to show Garden plot borders. Similar to how later Minecraft version render chunk borders.")
+    @ConfigOption(
+        name = "Enable Plot Borders",
+        desc = "Enable the use of F3 + G hotkey to show Garden plot borders. " +
+            "Similar to how later Minecraft version render chunk borders."
+    )
     @ConfigEditorBoolean
     @FeatureToggle
-    public boolean plotBorders = true;
+    var plotBorders: Boolean = true
 
     @Expose
-    @ConfigOption(name = "Copy Milestone Data", desc = "Copy wrong crop milestone data in clipboard when opening the crop milestone menu. Please share this data in SkyHanni discord.")
+    @ConfigOption(
+        name = "Copy Milestone Data",
+        desc = "Copy wrong crop milestone data in clipboard when opening the crop milestone menu. " +
+            "Please share this data in SkyHanni discord."
+    )
     @ConfigEditorBoolean
     @FeatureToggle
-    public boolean copyMilestoneData = true;
+    var copyMilestoneData: Boolean = true
 
     @Expose
     @ConfigOption(name = "Log Book Stats", desc = "Show total visited/accepted/denied visitors stats.")
     @ConfigEditorBoolean
     @FeatureToggle
-    public boolean showLogBookStats = true;
+    var showLogBookStats: Boolean = true
 
     @Expose
-    @ConfigLink(owner = GardenConfig.class, field = "showLogBookStats")
-    public Position logBookStatsPos = new Position(427, 92, false, true);
+    @ConfigLink(owner = GardenConfig::class, field = "showLogBookStats")
+    var logBookStatsPos: Position = Position(427, 92)
 
     @Expose
     @ConfigOption(name = "Carrolyn Fetch Helper", desc = "Helps to fetch items to Carrolyn for permanent buffs.")
     @SearchTag("Expired Pumpkin, Exportable Carrots, Supreme Chocolate Bar, Fine Flour")
     @ConfigEditorBoolean
     @FeatureToggle
-    public boolean helpCarrolyn = true;
+    var helpCarrolyn: Boolean = true
 }

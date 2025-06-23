@@ -1,15 +1,15 @@
-package at.hannibal2.skyhanni.config.features.garden;
+package at.hannibal2.skyhanni.config.features.garden
 
-import at.hannibal2.skyhanni.config.FeatureToggle;
-import at.hannibal2.skyhanni.config.core.config.Position;
-import at.hannibal2.skyhanni.features.garden.fortuneguide.FFGuideGui;
-import com.google.gson.annotations.Expose;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorBoolean;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorButton;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigLink;
-import io.github.notenoughupdates.moulconfig.annotations.ConfigOption;
+import at.hannibal2.skyhanni.config.FeatureToggle
+import at.hannibal2.skyhanni.config.core.config.Position
+import at.hannibal2.skyhanni.features.garden.fortuneguide.FFGuideGui
+import com.google.gson.annotations.Expose
+import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorBoolean
+import io.github.notenoughupdates.moulconfig.annotations.ConfigEditorButton
+import io.github.notenoughupdates.moulconfig.annotations.ConfigLink
+import io.github.notenoughupdates.moulconfig.annotations.ConfigOption
 
-public class FarmingFortuneConfig {
+class FarmingFortuneConfig {
     @Expose
     @ConfigOption(
         name = "FF Display",
@@ -17,23 +17,26 @@ public class FarmingFortuneConfig {
     )
     @ConfigEditorBoolean
     @FeatureToggle
-    public boolean display = false;
+    var display: Boolean = false
 
     @Expose
     @ConfigOption(name = "Compact Format", desc = "Compact the farming fortune display.")
     @ConfigEditorBoolean
-    public boolean compactFormat = false;
+    var compactFormat: Boolean = false
 
     @Expose
     @ConfigOption(name = "Hide Missing Fortune Warnings", desc = "Hide missing fortune warnings from the display.")
     @ConfigEditorBoolean
-    public boolean hideMissingFortuneWarnings = false;
+    var hideMissingFortuneWarnings: Boolean = false
 
-    @ConfigOption(name = "Farming Fortune Guide", desc = "Open a guide that breaks down your Farming Fortune.\n§eCommand: /ff")
+    @ConfigOption(
+        name = "Farming Fortune Guide",
+        desc = "Open a guide that breaks down your Farming Fortune.\n§eCommand: /ff"
+    )
     @ConfigEditorButton(buttonText = "Open")
-    public Runnable open = FFGuideGui::onCommand;
+    var open: Runnable = Runnable(FFGuideGui::onCommand)
 
     @Expose
-    @ConfigLink(owner = FarmingFortuneConfig.class, field = "display")
-    public Position pos = new Position(5, -180, false, true);
+    @ConfigLink(owner = FarmingFortuneConfig::class, field = "display")
+    var position: Position = Position(5, -180)
 }
