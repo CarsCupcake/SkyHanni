@@ -503,5 +503,13 @@ object GriffinBurrowHelper {
                 ChatUtils.chat("Test Griffin Spots $state§e.")
             }
         }
+        event.registerBrigadier("") {
+            description = "Resets guessed burrwos"
+            aliases = listOf("shresetburrows")
+            category = CommandCategory.USERS_BUG_FIX
+            simpleCallback {
+                resetAllData()
+            }
+        }
     }
 }
