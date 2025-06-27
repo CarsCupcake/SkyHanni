@@ -35,9 +35,6 @@ import at.hannibal2.skyhanni.utils.renderables.Renderable
 import at.hannibal2.skyhanni.utils.renderables.RenderableUtils.renderXAligned
 import io.github.notenoughupdates.moulconfig.ChromaColour
 import net.minecraft.client.Minecraft
-//#if MC < 1.21
-import net.minecraft.client.renderer.GLAllocation
-//#endif
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.entity.Entity
 import net.minecraft.inventory.Slot
@@ -47,7 +44,9 @@ import java.awt.Color
 import java.nio.FloatBuffer
 import kotlin.time.Duration
 import kotlin.time.DurationUnit
-//#if MC > 1.21
+//#if MC < 1.21
+import net.minecraft.client.renderer.GLAllocation
+//#else
 //$$ import com.mojang.blaze3d.systems.RenderSystem
 //$$ import org.lwjgl.BufferUtils
 //#endif
@@ -131,7 +130,7 @@ object RenderUtils {
         GlStateManager.disableDepth()
         DrawContextUtils.pushMatrix()
         // TODO don't use z
-        //#if TODO
+        //#if MC < 1.21
         val zLevel = Minecraft.getMinecraft().renderItem.zLevel
         //#else
         //$$ val zLevel = 50f
@@ -199,12 +198,6 @@ object RenderUtils {
     ) {
         _drawColor(location, color, beacon, alpha, seeThroughBlocks)
     }
-
-    //#if TODO
-    @Deprecated("Use WorldRenderUtils' getViewerPos instead", ReplaceWith("WorldRenderUtils.getViewerPos(partialTicks)"))
-    fun getViewerPos(partialTicks: Float) =
-        Minecraft.getMinecraft().renderViewEntity?.let { exactLocation(it, partialTicks) } ?: LorenzVec()
-    //#endif
 
     @Deprecated("Use WorldRenderUtils' expandBlock instead")
     fun AxisAlignedBB.expandBlock(n: Int = 1) = expand(LorenzVec.expandVector * n)
