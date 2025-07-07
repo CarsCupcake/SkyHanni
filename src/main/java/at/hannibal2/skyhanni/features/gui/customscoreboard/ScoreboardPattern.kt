@@ -271,7 +271,7 @@ object ScoreboardPattern {
      */
     val pastingPattern by farmingSB.pattern(
         "pasting",
-        "\\s*§f(?:Barn )?Pasting§7: (?:§.)*[\\d,.]+%?",
+        "\\s*(?:§.)*(?:Barn )?Pasting§7: (?:§.)*[\\d,.]+%?",
     )
 
     /**
@@ -444,10 +444,11 @@ object ScoreboardPattern {
 
     /**
      * REGEX-TEST: Fossil Dust: §f3,281 §e(+1)
+     * REGEX-TEST: Fossil Dust: 405 §e(+1)
      */
     val fossilDustPattern by miningSB.pattern(
         "fossildust",
-        "Fossil Dust: §f[\\d.,]+.*",
+        "Fossil Dust: (?:§f)*[\\d.,]+.*",
     )
 
     // combat
@@ -557,7 +558,7 @@ object ScoreboardPattern {
      */
     val flightDurationPattern by miscSB.pattern(
         "flightduration",
-        "^\\s*Flight Duration: §a(?::?\\d{1,3})*$",
+        "\\s*Flight Duration: §a(?::?\\d{1,3})*",
     )
 
     /**
@@ -641,15 +642,6 @@ object ScoreboardPattern {
         "(?:§d\\d+(?:st|nd|rd|th) Anniversary|§bCentury Raffle)§f (?:\\d|:)+",
     )
 
-    /**
-     * REGEX-TEST: §bCentury Raffle§f 124:00:00
-     * To fix custom scoreboard erroring every second
-     */
-    val tempRafflePattern by miscSB.pattern(
-        "tempfix",
-        "§bCentury Raffle§f (?:\\d|:)+",
-    )
-
     // this thirdObjectiveLinePattern includes all those weird objective lines that go into a third (and fourth) scoreboard line
     /**
      * REGEX-TEST: §eProtect Elle §7(§a98%§7)
@@ -699,7 +691,7 @@ object ScoreboardPattern {
      */
     val newYearPattern by eventsSB.pattern(
         "newyear",
-        "§dNew Year Event!§f \\d*?:?\\d+",
+        "§dNew Year Event!§f \\d*:?\\d+",
     )
 
     /**
@@ -707,7 +699,7 @@ object ScoreboardPattern {
      */
     val spookyPattern by eventsSB.pattern(
         "spooky",
-        "§6Spooky Festival§f \\d*?:?\\d+",
+        "§6Spooky Festival§f \\d*:?\\d+",
     )
 
     /**
@@ -914,10 +906,11 @@ object ScoreboardPattern {
     /**
      * REGEX-TEST: Whispers: §3141§b (+1)
      * REGEX-TEST: Whispers: §317.5k§b (+50)
+     * REGEX-TEST: §fWhispers: §317k§b (+40)
      */
     val whispersPattern by galateaSB.pattern(
         "whispers",
-        "Whispers: §3[\\w,.]+.*"
+        "(?:§f)?Whispers: §3[\\w,.]+.*"
     )
 
     /**
@@ -938,7 +931,7 @@ object ScoreboardPattern {
     )
 
     /**
-     * Somtimes when the scoreboard updates, it only updates half way,
+     * Sometimes when the scoreboard updates, it only updates half way,
      * causing some lines to become mixed with other lines -> broken.
      * This should already get handled fine but sometimes these errors still occur with some lines way too often.
      * This pattern is to catch those lines.
